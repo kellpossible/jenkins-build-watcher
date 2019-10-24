@@ -33,8 +33,10 @@ public class JBWSettingsForm {
         serverAddress.setText(settings.getServerAddress());
         username.setText(settings.getUsername());
 
-        String passwordString = passwordManager.getPassword().orElseGet(String::new);
-        password.setText(passwordString);
+        if (settings.hasPasswordCredentials()) {
+            String passwordString = passwordManager.getPassword().orElseGet(String::new);
+            password.setText(passwordString);
+        }
 
         previousSettings = getSettings();
     }
@@ -47,7 +49,11 @@ public class JBWSettingsForm {
     }
 
     boolean isModified() {
-        return !previousSettings.equals(getSettings());
+        if (previousSettings != null) {
+            return !previousSettings.equals(getSettings());
+        } else {
+            return false;
+        }
     }
 
     void apply() {

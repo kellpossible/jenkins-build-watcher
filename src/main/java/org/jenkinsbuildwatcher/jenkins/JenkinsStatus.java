@@ -34,7 +34,6 @@ public class JenkinsStatus {
     public JenkinsStatus(Project project) {
         this.settings = JBWSettings.getInstance(project);
         this.passwordManager = new PasswordManager(project);
-        thread = new QueryThread();
     }
 
     public void addListener(JenkinsStatusListener statusListener) {
@@ -46,6 +45,7 @@ public class JenkinsStatus {
     }
 
     public void query() {
+        thread = new QueryThread();
         thread.start();
     }
 
@@ -65,8 +65,17 @@ public class JenkinsStatus {
             Log4JLogger logger = new Log4JLogger();
 
             try {
+                if (!settings.hasPasswordCredentials()) {
+                    processEvent(StatusMessage.ERROR);
+                    return;
+                }
+                System.out.println("address " + settings.getServerAddress());
+                System.out.println("username " + settings.getUsername());
+                System.out.println("password " + passwordManager.getPassword());
+
+                URI uri = new URI(settings.getServerAddress());
                 JenkinsServer jenkins = new JenkinsServer(
-                        new URI(settings.getServerAddress()),
+                        uri,
                         settings.getUsername(),
                         passwordManager.getPassword().orElseGet(String::new));
 //			System.out.println(jenkins.getViews());
@@ -83,7 +92,7 @@ public class JenkinsStatus {
 //			Project project = ProjectManager.getInstance().getOpenProjects()[0];
 //			GitRepositoryManager.getInstance(project).getRepositories();
             }
-            catch (URISyntaxException | IOException e) {
+            catch (Exception  e) {
                 e.printStackTrace();
                 processEvent(StatusMessage.ERROR);
             }

@@ -31,13 +31,13 @@ public class PasswordManager {
     }
 
     private CredentialAttributes createCredentialAttributes() {
-        String username = settings.getUsername();
-        String serverAddress = settings.getServerAddress();
-
-        if (username == null || serverAddress == null)
+        if (!settings.hasPasswordCredentials())
         {
             throw new RuntimeException("username and server address have not yet been set, unable to create credentials");
         }
+
+        String username = settings.getUsername();
+        String serverAddress = settings.getServerAddress();
 
         String key = username + "," + serverAddress;
         return new CredentialAttributes("JenkinsBuildWatcherSettings", key);

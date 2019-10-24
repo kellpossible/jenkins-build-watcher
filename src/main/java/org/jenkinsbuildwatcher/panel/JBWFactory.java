@@ -7,6 +7,7 @@ import org.jenkinsbuildwatcher.jenkins.JenkinsStatus;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 public class JBWFactory implements ToolWindowFactory {
     private JenkinsStatus jenkinsStatus;
@@ -24,12 +25,22 @@ public class JBWFactory implements ToolWindowFactory {
                 status.getJobs().forEach(jobName -> {
                     rootPanel.add(new JLabel(jobName));
                 });
+                rootPanel.repaint(); //todo: broken
             }
             if (message == JenkinsStatus.StatusMessage.ERROR) {
                 rootPanel.removeAll();
                 rootPanel.add(new JLabel("Error during status update"));
+                JButton button = new JButton("Retry");
+                button.addActionListener((actionEvent) -> {
+                    //todo need to find a different way to process events
+                    SwingUtilities.invokeLater(() -> jenkinsStatus.query());
+                });
+                rootPanel.add(button);
+                rootPanel.repaint(); //todo: broken
             }
         });
+
+        jenkinsStatus.query();
     }
 
     @Override

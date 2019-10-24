@@ -47,4 +47,8 @@ public class JBWSettings implements PersistentStateComponent<JBWSettings> {
     public static JBWSettings getInstance(Project project) {
         return ServiceManager.getService(project, JBWSettings.class);
     }
+
+    public boolean hasPasswordCredentials() {
+        return serverAddress != null && username != null;
+    }
 }
