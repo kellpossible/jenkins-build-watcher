@@ -21,9 +21,20 @@
     <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <toolWindow
+                id="Jenkins"
+                anchor="right"
+                factoryClass="org.jenkinsbuildwatcher.JBWFactory"/>
+
+        <projectConfigurable
+                instance="org.jenkinsbuildwatcher.JBWConfigurable"
+                displayName="Jenkins Build Watcher"
+                groupId="tools"
+                id="tools.jenkinsbuildwatcher"/>
+
+        <projectService serviceImplementation="org.jenkinsbuildwatcher.JBWSettings"/>
+
     </extensions>
-
-
 
     <actions>
         <group id="MyPlugin.SampleMenu" text="Greeting" description="Greeting menu">
@@ -31,6 +42,5 @@
             <action id="Myplugin.Textboxes" class="HelloAction" text="Hello" description="Says hello"/>
         </group>
     </actions>
-
 
 </idea-plugin>
