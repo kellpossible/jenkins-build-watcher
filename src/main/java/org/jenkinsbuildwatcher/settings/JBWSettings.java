@@ -1,7 +1,5 @@
-package org.jenkinsbuildwatcher;
+package org.jenkinsbuildwatcher.settings;
 
-import com.intellij.credentialStore.CredentialAttributes;
-import com.intellij.ide.passwordSafe.PasswordSafe;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
@@ -19,7 +17,7 @@ public class JBWSettings implements PersistentStateComponent<JBWSettings> {
     private String serverAddress;
     private String username;
 
-    String getServerAddress() {
+    public String getServerAddress() {
         return serverAddress;
     }
 
@@ -27,7 +25,7 @@ public class JBWSettings implements PersistentStateComponent<JBWSettings> {
         this.serverAddress = serverAddress;
     }
 
-    String getUsername() {
+    public String getUsername() {
         return username;
     }
 
@@ -46,7 +44,7 @@ public class JBWSettings implements PersistentStateComponent<JBWSettings> {
         XmlSerializerUtil.copyBean(state, this);
     }
 
-    static JBWSettings getInstance(Project project) {
+    public static JBWSettings getInstance(Project project) {
         return ServiceManager.getService(project, JBWSettings.class);
     }
 }

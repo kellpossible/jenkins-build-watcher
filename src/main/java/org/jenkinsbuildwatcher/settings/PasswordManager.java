@@ -1,4 +1,4 @@
-package org.jenkinsbuildwatcher;
+package org.jenkinsbuildwatcher.settings;
 
 import com.intellij.credentialStore.CredentialAttributes;
 import com.intellij.ide.passwordSafe.PasswordSafe;
@@ -6,10 +6,10 @@ import com.intellij.openapi.project.Project;
 
 import java.util.Optional;
 
-class PasswordManager {
+public class PasswordManager {
     private final JBWSettings settings;
 
-    PasswordManager(Project project)
+    public PasswordManager(Project project)
     {
         this.settings = JBWSettings.getInstance(project);
     }
@@ -24,7 +24,7 @@ class PasswordManager {
         PasswordSafe.getInstance().setPassword(createCredentialAttributes(), password);
     }
 
-    Optional<String> getPassword()
+    public Optional<String> getPassword()
     {
         CredentialAttributes credentialAttributes = createCredentialAttributes();
         return Optional.ofNullable(PasswordSafe.getInstance().getPassword(credentialAttributes));

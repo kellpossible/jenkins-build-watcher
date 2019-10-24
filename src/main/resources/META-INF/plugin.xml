@@ -24,15 +24,15 @@
         <toolWindow
                 id="Jenkins"
                 anchor="right"
-                factoryClass="org.jenkinsbuildwatcher.JBWFactory"/>
+                factoryClass="org.jenkinsbuildwatcher.panel.JBWFactory"/>
 
         <projectConfigurable
-                instance="org.jenkinsbuildwatcher.JBWConfigurable"
+                instance="org.jenkinsbuildwatcher.settings.JBWConfigurable"
                 displayName="Jenkins Build Watcher"
                 groupId="tools"
                 id="tools.jenkinsbuildwatcher"/>
 
-        <projectService serviceImplementation="org.jenkinsbuildwatcher.JBWSettings"/>
+        <projectService serviceImplementation="org.jenkinsbuildwatcher.settings.JBWSettings"/>
 
     </extensions>
 

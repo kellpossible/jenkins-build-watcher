@@ -1,4 +1,4 @@
-package org.jenkinsbuildwatcher;
+package org.jenkinsbuildwatcher.settings;
 
 import javax.swing.*;
 import java.util.Arrays;
