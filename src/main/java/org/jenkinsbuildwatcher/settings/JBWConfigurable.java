@@ -7,13 +7,15 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
+/**
+ *
+ */
 public class JBWConfigurable implements Configurable {
     private JBWSettingsForm settingsForm;
     private JBWSettings settings;
     private PasswordManager passwordManager;
 
-    public JBWConfigurable(Project project)
-    {
+    public JBWConfigurable(Project project) {
         this.settings = JBWSettings.getInstance(project);
         this.passwordManager = new PasswordManager(project);
     }

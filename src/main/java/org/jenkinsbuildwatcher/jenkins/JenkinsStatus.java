@@ -8,9 +8,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.jenkinsbuildwatcher.settings.JBWSettings;
 import org.jenkinsbuildwatcher.settings.PasswordManager;
 
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
 

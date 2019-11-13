@@ -16,6 +16,7 @@ docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins
 
 ## Features
 
+- [x] store server address, and authentication in per-project settings
 - [ ] browse and select jobs to watch
 - [ ] notifications upon job status changes
 - [ ] stop/start/restart jobs
