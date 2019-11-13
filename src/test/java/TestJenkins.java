@@ -13,7 +13,9 @@ import org.apache.log4j.BasicConfigurator;
 import org.junit.Test;
 
 /**
- *
+ * Unit tests, work in progress...
+ * TODO: convert this to use mocked classes, and not to connect to the server
+ * TODO: create an integration test too
  */
 public class TestJenkins
 {
